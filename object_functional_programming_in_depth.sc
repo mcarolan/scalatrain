@@ -80,4 +80,22 @@ object object_functional_programming_in_depth {
   //partial function
   pairs filter { case (_, i) => i % 2 == 0 }      //> res5: scala.collection.immutable.IndexedSeq[(Char, Int)] = Vector((a,0), (c
                                                   //| ,2), (e,4))
+   
+	object Folding {
+	
+		def map[A, B](c: Seq[A])(func: A => B): Seq[B] =
+			c.foldLeft(Seq.empty[B])((x, y) => x :+ func(y))
+		
+		def flatMap[A, B](c: Seq[A])(func: A => Seq[B]): Seq[B] =
+			c.foldLeft(Seq.empty[B])((x, y) => x ++ func(y))
+			
+		def filter[A](c: Seq[A])(func: A => Boolean): Seq[A] =
+			c.foldLeft(Seq.empty[A])((x, y) => if (func(y)) x :+ y else x)
+	}
+	
+	Folding.map(Seq(1, 2, 3, 4))(_ + 1)       //> res6: Seq[Int] = List(2, 3, 4, 5)
+	Folding.flatMap(Seq(1, 2, 3, 4))((x) => List(x, x))
+                                                  //> res7: Seq[Int] = List(1, 1, 2, 2, 3, 3, 4, 4)
+	Folding.filter(Seq(1, 2, 3, 4))(_ % 2 == 0)
+                                                  //> res8: Seq[Int] = List(2, 4)
 }
