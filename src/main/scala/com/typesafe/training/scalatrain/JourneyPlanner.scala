@@ -9,6 +9,16 @@ class JourneyPlanner(trains: Set[Train]) {
   val stations: Set[Station] =
     trains flatMap (_.stations)
 
+  val hops = {
+
+    val hops = for {
+      train <- trains
+      (from, to) <- train.backToBackStations
+    } yield Hop(from, to, train)
+
+    hops.groupBy(_.from)
+  }
+
   def trainsAt(station: Station): Set[Train] =
     trains filter (_.stations contains station)
 

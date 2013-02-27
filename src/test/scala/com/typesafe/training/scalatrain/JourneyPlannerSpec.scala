@@ -30,6 +30,22 @@ class JourneyPlannerSpec extends WordSpec with MustMatchers {
     }
   }
 
+  "hops" should {
+    "work for starting station" in {
+      Planner.hops(Munich) must be === Set(Hop(Munich, Nuremberg, Ice724), Hop(Munich, Nuremberg, Ice726))
+    }
+
+    "works for middle station" in {
+      Planner.hops(Frankfurt) must be === Set(
+        Hop(Frankfurt, Cologne, Ice724),
+        Hop(Frankfurt, Essen, Ice726))
+    }
+
+    "end only station not in hops" in {
+      Planner.hops isDefinedAt Essen must be === false
+    }
+  }
+
   "Calling isShortTrip" should {
     "return false for more than one station in between" in {
       Planner.isShortTrip(Munich, Cologne) must be(false)
