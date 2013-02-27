@@ -3,6 +3,7 @@ boot/
 lib_managed/
 target/
 .history
+.worksheet/*
 
 # Eclipse
 .cache
@@ -18,6 +19,7 @@ target/
 *.ipr
 *.iws
 out/
+*.class
 
 # TextMate
 *.tmproj
