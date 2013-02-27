@@ -20,6 +20,8 @@ object TestData {
 
   val Ice724NurembergTime = Time(10)
 
+  val Ice724MacclesfieldTime = Time(11)
+
   val Ice724FrankfurtTime = Time(12, 10)
 
   val Ice724CologneTime = Time(13, 39)

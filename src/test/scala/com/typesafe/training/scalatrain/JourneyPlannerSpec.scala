@@ -30,6 +30,16 @@ class JourneyPlannerSpec extends WordSpec with MustMatchers {
     }
   }
 
+  "Calling connections" should {
+    "return 2 routes for Munich -> frankfurt at 6am " in {
+      Planner.connections(Munich, Frankfurt, Time(6)).size must be === 3
+    }
+
+    "return 1 route for Munich -> frankfurt in 8am " in {
+      Planner.connections(Munich, Frankfurt, Time(8)).size must be === 1
+    }
+  }
+
   "hops" should {
     "work for starting station" in {
       Planner.hops(Munich) must be === Set(Hop(Munich, Nuremberg, Ice724), Hop(Munich, Nuremberg, Ice726))
