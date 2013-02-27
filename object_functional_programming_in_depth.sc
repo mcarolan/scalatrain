@@ -37,4 +37,30 @@ object object_functional_programming_in_depth {
                                                   //| Output exceeds cutoff limit.
 	
   println("Welcome to the Scala worksheet")       //> Welcome to the Scala worksheet
+  
+  // recursive implementation of map, flatMap, filter
+  object Recurse2 {
+  
+  	def map[A, B](c: Seq[A])(func: A => B) : Seq[B] =
+  		c match {
+  			case head +: tail => func(head) +: map(tail)(func)
+  			case _ => Seq.empty
+  		}
+  		
+  	def flatMap[A, B](c: Seq[A])(func: A => Seq[B]): Seq[B] =
+  		c match {
+  			case head +: tail => func(head) ++ flatMap(tail)(func)
+  			case _ => Seq.empty
+  		}
+  		
+  	def filter[A](c: Seq[A])(func: A => Boolean) : Seq[A] =
+  		c match {
+  			case head +: tail if func(head) => head +: filter(tail)(func)
+  			case head +: tail => filter(tail)(func)
+  			case _ => Seq.empty
+  		}
+  }
+  
+  Recurse2.map(Seq(1, 2, 3, 4))(_ + 1)            //> res1: Seq[Int] = List(2, 3, 4, 5)
+  Recurse2.filter(Seq(1, 2, 3, 4))(_ % 2 == 0)    //> res2: Seq[Int] = List(2, 4)
 }
