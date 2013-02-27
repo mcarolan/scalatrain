@@ -29,8 +29,8 @@ class TrainSpec extends WordSpec with MustMatchers {
   }
 
   "backToBackStations" should {
-    "be intialized correctly" in {
-      Ice724.backToBackStations must be === Vector((Munich, Nuremberg), (Nuremberg, Frankfurt), (Frankfurt, Cologne))
+    "be intialized correctly for 724" in {
+      Ice724.backToBackStations must be === Vector(Munich -> Nuremberg, Nuremberg -> Frankfurt, Frankfurt -> Cologne)
     }
   }
 }
