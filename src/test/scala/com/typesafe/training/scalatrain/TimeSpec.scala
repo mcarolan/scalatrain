@@ -21,7 +21,7 @@ class TimeSpec extends WordSpec with MustMatchers {
       Time.isIncreasing(Seq(Time(9, 30), Time(11, 30), Time(10, 30))) must be(false)
     }
 
-    "say 11:30, 10:30, 9:30" in {
+    "say is NOT increasing for 11:30, 10:30, 9:30" in {
       Time.isIncreasing(Seq(Time(11, 30), Time(10, 30), Time(9, 30))) must be(false)
     }
 

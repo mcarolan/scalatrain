@@ -16,6 +16,10 @@ class TrainSpec extends WordSpec with MustMatchers {
       evaluating(Train(TrainInfo.InterCityExpress(724), Vector())) must produce[IAE]
       evaluating(Train(TrainInfo.InterCityExpress(724), Vector(Ice724MunichTime -> Munich))) must produce[IAE]
     }
+
+    "throw an IllegalArgumentException for a schedule with none-increasing times" in {
+      evaluating(Train(TrainInfo.InterCityExpress(724), Vector(Time(8, 50) -> Munich, Time(7, 49) -> Munich))) must produce[IAE]
+    }
   }
 
   "stations" should {
