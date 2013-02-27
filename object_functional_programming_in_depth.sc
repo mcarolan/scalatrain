@@ -44,32 +44,40 @@ object object_functional_programming_in_depth {
   	def map[A, B](c: Seq[A])(func: A => B) : Seq[B] =
   		c match {
   			case head +: tail => func(head) +: map(tail)(func)
-  			case _ => Seq.empty
+  			case Seq() => Seq.empty
   		}
   		
   	def flatMap[A, B](c: Seq[A])(func: A => Seq[B]): Seq[B] =
   		c match {
   			case head +: tail => func(head) ++ flatMap(tail)(func)
-  			case _ => Seq.empty
+  			case Seq() => Seq.empty
   		}
   		
   	def filter[A](c: Seq[A])(func: A => Boolean) : Seq[A] =
   		c match {
   			case head +: tail if func(head) => head +: filter(tail)(func)
   			case head +: tail => filter(tail)(func)
-  			case _ => Seq.empty
+  			case Seq() => Seq.empty
+  		}
+  		
+  	def forall[A](c: Seq[A])(func: A => Boolean) : Boolean =
+  		c match {
+  			case head +: tail if func(head) => forall(tail)(func)
+  			case Seq() => true
+  			case _ => false
   		}
   }
   
   Recurse2.map(Seq(1, 2, 3, 4))(_ + 1)            //> res1: Seq[Int] = List(2, 3, 4, 5)
   Recurse2.filter(Seq(1, 2, 3, 4))(_ % 2 == 0)    //> res2: Seq[Int] = List(2, 4)
+  Recurse2.forall(Seq(1, 2, 3, 4))(_ % 2 == 0)    //> res3: Boolean = false
+  Recurse2.forall(Seq(1, 2, 3, 4))(_ > 0)         //> res4: Boolean = true
   
   //partial function literal with case statement
   val pairs = ('a' to 'f') zipWithIndex           //> pairs  : scala.collection.immutable.IndexedSeq[(Char, Int)] = Vector((a,0),
                                                   //|  (b,1), (c,2), (d,3), (e,4), (f,5))
   
   //partial function
-  pairs filter { case (_, i) => i % 2 == 0 }      //> res3: scala.collection.immutable.IndexedSeq[(Char, Int)] = Vector((a,0), (c
+  pairs filter { case (_, i) => i % 2 == 0 }      //> res5: scala.collection.immutable.IndexedSeq[(Char, Int)] = Vector((a,0), (c
                                                   //| ,2), (e,4))
-
 }
