@@ -3,7 +3,7 @@ boot/
 lib_managed/
 target/
 .history
-.worksheet/*
+.worksheet
 
 # Eclipse
 .cache

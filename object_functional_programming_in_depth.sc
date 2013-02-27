@@ -63,4 +63,13 @@ object object_functional_programming_in_depth {
   
   Recurse2.map(Seq(1, 2, 3, 4))(_ + 1)            //> res1: Seq[Int] = List(2, 3, 4, 5)
   Recurse2.filter(Seq(1, 2, 3, 4))(_ % 2 == 0)    //> res2: Seq[Int] = List(2, 4)
+  
+  //partial function literal with case statement
+  val pairs = ('a' to 'f') zipWithIndex           //> pairs  : scala.collection.immutable.IndexedSeq[(Char, Int)] = Vector((a,0),
+                                                  //|  (b,1), (c,2), (d,3), (e,4), (f,5))
+  
+  //partial function
+  pairs filter { case (_, i) => i % 2 == 0 }      //> res3: scala.collection.immutable.IndexedSeq[(Char, Int)] = Vector((a,0), (c
+                                                  //| ,2), (e,4))
+
 }
