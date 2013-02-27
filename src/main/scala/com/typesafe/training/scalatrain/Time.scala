@@ -25,7 +25,14 @@ object Time {
   def isIncreasing(times: Seq[Time]): Boolean =
     times match {
       case t1 +: t2 +: rest => (t1 < t2) && isIncreasing(t2 +: rest)
-      case _ => true
+      case Seq(_) => true
+      case Seq() => true
+    }
+
+  def isIncreasingSliding(times: Seq[Time]) =
+    times sliding 2 forall {
+      case Seq(t1, t2) => t1 < t2
+      case Seq(_) => true
     }
 
 }
