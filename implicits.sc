@@ -9,4 +9,10 @@ object implicits {
 	val fish: Animal = "nemo"                 //> fish  : implicits.Animal = Animal(nemo)
 	fish.name                                 //> res0: String = nemo
 	
+	implicit class IntReverse(val n: Int) {
+		def reverse: Int =
+			n.toString.reverse.toInt
+	}
+	
+	123.reverse                               //> res1: Int = 321
 }
