@@ -28,7 +28,7 @@ object implicits {
 	implicit val weirdStringEquals = new AreEqual[String] {
 		def eval(s1: String, s2: String) = s1 != s2
 	}                                         //> weirdStringEquals  : misc.Equal.AreEqual[String] = implicits$$anonfun$main$1
-                                                  //| $$anon$1@3d9360e2
+                                                  //| $$anon$1@b6e39f
                                
   "hello" === "hello"                             //> res6: Boolean = false
 	
@@ -42,4 +42,10 @@ object implicits {
 	pow(2)                                    //> res8: Double = 1024.0
 	pow(5)                                    //> res9: Double = 9765625.0
 	pow(10)                                   //> res10: Double = 1.0E10
+	
+	//error
+	//implicitly[String]
+	implicit val s = "I am implicit"          //> s  : String = I am implicit
+	//I am implicit
+	implicitly[String]                        //> res11: String = I am implicit
 }
