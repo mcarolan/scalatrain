@@ -44,3 +44,6 @@ sealed abstract class TrainInfo {
 
 //can see in sbt console, :javap com.typesafe.training.scalatrain.JourneyPlanner that this is now inlined to a string when passed as a parameter
 case class Station(name: String) extends AnyVal
+object Station {
+  implicit def stringToStation(name: String) = Station(name)
+}
