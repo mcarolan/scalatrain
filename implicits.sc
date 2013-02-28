@@ -1,4 +1,5 @@
 import com.typesafe.training.scalatrain
+import misc.Equal.EqualOps
 
 object implicits {
 
@@ -13,6 +14,13 @@ object implicits {
 		def reverse: Int =
 			n.toString.reverse.toInt
 	}
-	
+
 	123.reverse                               //> res1: Int = 321
+	
+	//type safe equals!
+	123 == 123                                //> res2: Boolean(true) = true
+	"123" == 123                              //> res3: Boolean = false
+	123 === 123                               //> res4: Boolean = true
+	//will not compile "123" === 123
+
 }
