@@ -21,6 +21,13 @@ object Time {
       minutes <- Exception.allCatch opt minutesAny.toString.toInt
     } yield Time(hours, minutes)
 
+  implicit def stringToTime(s: String): Time = {
+    val regex = """(\d{1,2}):(\d\d)""".r
+    val regex(hours, mins) = s
+
+    Time(Integer.parseInt(hours), Integer.parseInt(mins))
+  }
+
 }
 
 case class Time(hours: Int = 0, minutes: Int = 0) extends Ordered[Time] {

@@ -39,6 +39,15 @@ class TimeSpec extends WordSpec with MustMatchers {
     }
   }
 
+  "Implicit conversion from string to Time" should {
+    "should return the correct difference in minutes" in {
+      val t1: Time = "1:40"
+      val t2: Time = "1:10"
+
+      t1 - t2 must be === 30
+    }
+  }
+
   "Calling isIncreasingSliding" should {
 
     "say 9:30, 10:30, 11:30 is increasing" in {

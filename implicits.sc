@@ -1,3 +1,5 @@
+import com.typesafe.training.scalatrain
+
 object implicits {
 
 	case class Animal(val name: String)
@@ -7,5 +9,4 @@ object implicits {
 	val fish: Animal = "nemo"                 //> fish  : implicits.Animal = Animal(nemo)
 	fish.name                                 //> res0: String = nemo
 	
-  println("Welcome to the Scala worksheet")       //> Welcome to the Scala worksheet
 }
