@@ -15,6 +15,8 @@ class Queue[+A] private (private val as: Seq[A]) {
     case _ => throw new NoSuchElementException()
   }
 
+  def enqueue[B >: A](item: B) = new Queue(as :+ item)
+
   override def equals(other: Any): Boolean =
     other match {
       case that: Queue[_] => (this eq that) || (this.as == that.as)

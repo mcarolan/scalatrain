@@ -20,12 +20,8 @@ class QueueSpec extends WordSpec with MustMatchers {
   }
 
   "Test covariance" should {
-    class Animal {
-
-    }
-    class Bird extends Animal {
-
-    }
+    class Animal
+    class Bird extends Animal
 
     val qb = Queue(new Bird)
     val q: Queue[Animal] = qb
@@ -49,6 +45,18 @@ class QueueSpec extends WordSpec with MustMatchers {
     }
     "return the first element and a new Queue without the dequeued element" in {
       Queue(1, 2, 3).dequeue must be === (1, Queue(2, 3))
+    }
+  }
+
+  "Calling enqueue" should {
+    "return a new queue with the element at the last position" in {
+      Queue(1, 2).enqueue(3) must be === Queue(1, 2, 3)
+    }
+    "work for an empty queue" in {
+      Queue().enqueue(3) must be === Queue(3)
+    }
+    "chain enqueue dequeue must work" in {
+      Queue(1, 2).enqueue(3).dequeue must be === (1, Queue(2, 3))
     }
   }
 }
