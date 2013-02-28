@@ -14,56 +14,56 @@ class TimeSpec extends WordSpec with MustMatchers {
   "Calling isIncreasing" should {
 
     "say 9:30, 10:30, 11:30 is increasing" in {
-      Time.isIncreasing(Seq(Time(9, 30), Time(10, 30), Time(11, 30))) must be(true)
+      isIncreasing(Seq(Time(9, 30), Time(10, 30), Time(11, 30))) must be(true)
     }
 
     "say 9:30, 11:30, 10:30 is NOT increasing" in {
-      Time.isIncreasing(Seq(Time(9, 30), Time(11, 30), Time(10, 30))) must be(false)
+      isIncreasing(Seq(Time(9, 30), Time(11, 30), Time(10, 30))) must be(false)
     }
 
     "say is NOT increasing for 11:30, 10:30, 9:30" in {
-      Time.isIncreasing(Seq(Time(11, 30), Time(10, 30), Time(9, 30))) must be(false)
+      isIncreasing(Seq(Time(11, 30), Time(10, 30), Time(9, 30))) must be(false)
     }
 
     "say is increasing if 0 or 1 element in sequence" in {
-      Time.isIncreasing(Seq()) must be(true)
-      Time.isIncreasing(Seq(Time(9, 30))) must be(true)
+      isIncreasing(Seq()) must be(true)
+      isIncreasing(Seq(Time(9, 30))) must be(true)
     }
 
     "say is increasing for 9:30, 10:30" in {
-      Time.isIncreasing(Seq(Time(9, 30), Time(10, 30))) must be(true)
+      isIncreasing(Seq(Time(9, 30), Time(10, 30))) must be(true)
     }
 
     "say is NOT increasing for 10:30, 9:30" in {
-      Time.isIncreasing(Seq(Time(10, 30), Time(9, 30))) must be(false)
+      isIncreasing(Seq(Time(10, 30), Time(9, 30))) must be(false)
     }
   }
 
   "Calling isIncreasingSliding" should {
 
     "say 9:30, 10:30, 11:30 is increasing" in {
-      Time.isIncreasingSliding(Seq(Time(9, 30), Time(10, 30), Time(11, 30))) must be(true)
+      isIncreasingSliding(Seq(Time(9, 30), Time(10, 30), Time(11, 30))) must be(true)
     }
 
     "say 9:30, 11:30, 10:30 is NOT increasing" in {
-      Time.isIncreasingSliding(Seq(Time(9, 30), Time(11, 30), Time(10, 30))) must be(false)
+      isIncreasingSliding(Seq(Time(9, 30), Time(11, 30), Time(10, 30))) must be(false)
     }
 
     "say is NOT increasing for 11:30, 10:30, 9:30" in {
-      Time.isIncreasingSliding(Seq(Time(11, 30), Time(10, 30), Time(9, 30))) must be(false)
+      isIncreasingSliding(Seq(Time(11, 30), Time(10, 30), Time(9, 30))) must be(false)
     }
 
     "say is increasing if 0 or 1 element in sequence" in {
-      Time.isIncreasingSliding(Seq()) must be(true)
-      Time.isIncreasingSliding(Seq(Time(9, 30))) must be(true)
+      isIncreasingSliding(Seq()) must be(true)
+      isIncreasingSliding(Seq(Time(9, 30))) must be(true)
     }
 
     "say is increasing for 9:30, 10:30" in {
-      Time.isIncreasingSliding(Seq(Time(9, 30), Time(10, 30))) must be(true)
+      isIncreasingSliding(Seq(Time(9, 30), Time(10, 30))) must be(true)
     }
 
     "say is NOT increasing for 10:30, 9:30" in {
-      Time.isIncreasingSliding(Seq(Time(10, 30), Time(9, 30))) must be(false)
+      isIncreasingSliding(Seq(Time(10, 30), Time(9, 30))) must be(false)
     }
   }
 

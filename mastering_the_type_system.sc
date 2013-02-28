@@ -21,4 +21,7 @@ object mastering_the_type_system {
 	//readonly: has to be covariant
 	//writeonly: has to be contravariant
 	//readwrite: has to be invariant
+	
+	//package objects define things that are visible to all classes defined in a package
+	//instead of creating a 'Utility' class, you can put them in a package object and grab them that way
 }

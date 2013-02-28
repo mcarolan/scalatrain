@@ -9,7 +9,7 @@ import scala.collection.breakOut
 
 case class Train(info: TrainInfo, schedule: Seq[(Time, Station)]) {
   require(schedule.size >= 2, "schedule must contain at least two elements")
-  require(Time.isIncreasing(schedule map (_._1)), "schedule times must be strictly increasing")
+  require(isIncreasing(schedule map (_._1)), "schedule times must be strictly increasing")
 
   val stations: Seq[Station] =
     schedule map (_._2)

@@ -21,20 +21,6 @@ object Time {
       minutes <- Exception.allCatch opt minutesAny.toString.toInt
     } yield Time(hours, minutes)
 
-  @tailrec
-  def isIncreasing(times: Seq[Time]): Boolean =
-    times match {
-      case t1 +: t2 +: rest => (t1 < t2) && isIncreasing(t2 +: rest)
-      case Seq(_) => true
-      case Seq() => true
-    }
-
-  def isIncreasingSliding(times: Seq[Time]) =
-    times sliding 2 forall {
-      case Seq(t1, t2) => t1 < t2
-      case Seq(_) => true
-    }
-
 }
 
 case class Time(hours: Int = 0, minutes: Int = 0) extends Ordered[Time] {
